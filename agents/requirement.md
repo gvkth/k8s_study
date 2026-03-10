@@ -1,0 +1,1 @@
+Tôi muốn học Kubernetes từ cơ bản đến nâng cao, có thể tự deploy ứng dụng lên Kubernetes và quản lý cluster.
