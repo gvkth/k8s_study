@@ -26,4 +26,17 @@ Tài liệu này tổng hợp các câu hỏi chuyên sâu về lý thuyết và
 > **Bản chất kỹ thuật (Deep dive):** Ẩn sâu bên dưới Docker/Containerd, mỗi khi bạn tạo 1 Pod, K8s sẽ âm thầm chạy thêm một container vô hình gọi là **Pause Container** (hay Sandbox container). Nhiệm vụ của nó gần như không tiêu tốn CPU/RAM, mà chỉ để "giữ chốt" môi trường ảo (giữ Network Namespace, v.v.) để các container nghiệp vụ của bạn có chỗ dọn vào. Đây mới chính là "cái vỏ bọc" thật sự về mặt logic hệ điều hành!
 
 ---
+
+### Q2: Tại sao K8s (trong Docker Desktop) đã chạy nhưng tôi mở giao diện Containers lên lại không thấy container nào?
+**A:** Đây là một đặc điểm của việc phân chia "**luồng hiển thị**" và "**bảo vệ hệ thống**" của Docker Desktop:
+
+1. **Docker ngầm ẩn các Container Hệ thống của Kubernetes:** 
+   Các thành phần xương sống của K8s như `kube-apiserver`, `etcd`, `kube-scheduler` thực chất **đang chạy dưới dạng container**. Tuy nhiên, mặc định Docker Desktop sẽ ẩn chúng khỏi người dùng. Nó làm vậy nhằm tránh việc người dùng thấy giao diện quá lộn xộn hoặc lỡ tay bấm `Stop` / `Delete` một tiến trình hệ thống nào đó khiến toàn bộ cụm K8s "sập nguồn".
+   *(Nếu bạn tò mò muốn thấy chúng trong giao diện Docker Desktop, vào **Settings -> Kubernetes -> Tích chọn "Show system containers"**, một nùi container `k8s_...` sẽ hiện ra).*
+
+2. **Chưa có Ứng dụng/Pod nào được triển khai (Deploy):**
+   Màn hình Container của Docker Desktop trống bốc vì cụm K8s vừa khởi tạo là một "vùng đất trống". Bộ sậu "ban quản lý" đang chạy ngầm, nhưng chưa có "cư dân" ứng dụng nào được dọn đến ở.
+   Trong K8s, người quản trị thường sẽ chẳng bao giờ ngó ngàng vào giao diện Docker Desktop để xem container. Mọi thao tác kiểm tra trạng thái đều được gõ lệnh qua terminal. Ví dụ: Dùng lệnh `kubectl get pods -A` (`-A` tức *All Namespaces*) để dòm thẳng trực tiếp vào hệ thống (để thấy luôn cả những Pod cốt lõi của "Ban quản lý").
+
+---
 *(Các câu hỏi mới sẽ tiếp tục được cập nhật tại đây...)*
