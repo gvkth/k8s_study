@@ -18,7 +18,7 @@ Dưới đây là lộ trình chi tiết các bài học đã và sẽ được 
   - Đảm bảo High Availability với ReplicaSets.
 
 ## Phần 2: Triển Khai và Cấp Phát Ứng Dụng (Workloads & Networking)
-- [ ] **Bài 4: Deployments** (`04_Deployments.md`)
+- [x] **Bài 4: Deployments** (`04_Deployments.md`)
   - Quản lý phiên bản ứng dụng với Deployment.
   - Rolling Update và Rollback.
 - [ ] **Bài 5: Services và Mạng trong K8s** (`05_Services_and_Networking.md`)

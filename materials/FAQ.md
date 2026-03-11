@@ -4,6 +4,13 @@ Tài liệu này tổng hợp các câu hỏi chuyên sâu về lý thuyết và
 
 ---
 
+## Mục lục
+- [1. Khái niệm cơ bản & Kiến trúc](#1-khái-niệm-cơ-bản--kiến-trúc)
+  - [Q1: Pod được hiểu là wrapper của 1 hoặc nhiều container à? Cụ thể hơn nó có thêm gì ngoài các container nó wrap?](#q1-pod-được-hiểu-là-wrapper-của-1-hoặc-nhiều-container-à-cụ-thể-hơn-nó-có-thêm-gì-ngoài-các-container-nó-wrap)
+  - [Q2: Tại sao K8s (trong Docker Desktop) đã chạy nhưng tôi mở giao diện Containers lên lại không thấy container nào?](#q2-tại-sao-k8s-trong-docker-desktop-đã-chạy-nhưng-tôi-mở-giao-diện-containers-lên-lại-không-thấy-container-nào)
+
+---
+
 ## 1. Khái niệm cơ bản & Kiến trúc
 
 ### Q1: Pod được hiểu là wrapper của 1 hoặc nhiều container à? Cụ thể hơn nó có thêm gì ngoài các container nó wrap?
