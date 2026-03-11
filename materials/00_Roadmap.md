@@ -12,7 +12,7 @@ Dưới đây là lộ trình chi tiết các bài học đã và sẽ được 
   - Cài đặt Docker/containerd.
   - Cài đặt Minikube hoặc Kind (để học tập nội bộ).
   - Cài đặt và cấu hình `kubectl`.
-- [ ] **Bài 3: Pods và ReplicaSets** (`03_Pods_and_ReplicaSets.md`)
+- [x] **Bài 3: Pods và ReplicaSets** (`03_Pods_and_ReplicaSets.md`)
   - Pod là gì? Vòng đời của Pod.
   - Cách tạo và quản lý Pod.
   - Đảm bảo High Availability với ReplicaSets.
