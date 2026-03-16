@@ -10,6 +10,7 @@ Tài liệu này tổng hợp các câu hỏi chuyên sâu về lý thuyết và
   - [Q2: Tại sao K8s (trong Docker Desktop) đã chạy nhưng tôi mở giao diện Containers lên lại không thấy container nào?](#q2-tại-sao-k8s-trong-docker-desktop-đã-chạy-nhưng-tôi-mở-giao-diện-containers-lên-lại-không-thấy-container-nào)
   - [Q3: Các Pod (như Nginx) cung cấp dịch vụ ở cổng nào? Làm sao để truy cập từ máy thật vào?](#q3-các-pod-như-nginx-cung-cấp-dịch-vụ-ở-cổng-nào-làm-sao-để-truy-cập-từ-máy-thật-vào)
   - [Q4: Ý tưởng dùng Selector trong K8s có giống với Selector trong CSS (class, id) không?](#q4-ý-tưởng-dùng-selector-trong-k8s-có-giống-với-selector-trong-css-class-id-không)
+  - [Q5: Việc K8s dùng chữ "Selector" có phải là ý đồ cố tình học hỏi từ các lĩnh vực khác như CSS?](#q5-việc-k8s-dùng-chữ-selector-có-phải-là-ý-đồ-cố-tình-học-hỏi-từ-các-lĩnh-vực-khác-như-css)
 
 ---
 
@@ -70,6 +71,19 @@ Tài liệu này tổng hợp các câu hỏi chuyên sâu về lý thuyết và
 2. **Khả năng phân nhóm (Grouping):** Bạn có thể gẩy một Selector cực kỳ tinh vi: *"Hãy chọn tất cả Pod có label `app: nginx` VÀ `env: prod`"*. Nó giống hệt việc bạn viết `.nginx.prod { ... }` trong CSS vậy.
 
 Cách tư duy này giúp bạn thoát khỏi việc quản lý "cá thể" (tên Pod, IP Pod) để chuyển sang quản lý "tập hợp" (Labels), giúp hệ thống có khả năng mở rộng (scale) vô tận.
+
+### Q5: Việc K8s dùng chữ "Selector" có phải là ý đồ cố tình học hỏi từ các lĩnh vực khác như CSS?
+**A:** Hoàn toàn chính xác! Trong giới thiết kế hệ thống, thuật ngữ này được gọi là **Label-based selection** và nó được mượn ý tưởng trực tiếp từ các hệ thống khai báo (declarative systems) thành công trước đó, mà CSS là ví dụ điển hình nhất.
+
+Ý đồ của những người khai sinh ra K8s (vốn là những kỹ sư hàng đầu tại Google) khi chọn chữ "Selector" là để nhấn mạnh triết lý **Loose Coupling (Kết nối lỏng lẻo)**:
+
+1. **Tách biệt định danh và hành vi:** 
+   Trong code truyền thống, bạn thường gọi hàm qua Tên hoặc gọi Server qua IP (giống như dùng `ID` trong HTML). Điều này khiến hệ thống rất cứng nhắc, một mắt xích chết là cả dây chuyền dừng.
+2. **Khai báo mục tiêu (Intent-based):** 
+   Dùng "Selector" nghĩa là bạn không nói "Tôi muốn cái máy A", mà bạn nói **"Tôi muốn bất kỳ cái máy nào có đặc điểm X"**. 
+   Nó giống hệt triết lý của CSS: Bạn không cần biết thẻ HTML đó nằm ở đâu, tên gì, bạn chỉ cần biết nó có class `.btn-blue` là bạn sẽ tô màu cho nó.
+
+Việc dùng chung thuật ngữ "Selector" giúp các lập trình viên (vốn đã quá quen với web/CSS) có thể nắm bắt tư duy của Kubernetes chỉ trong vài phút thay vì phải học lại một khái niệm hoàn toàn mới. Đây là một minh chứng cho sự tinh tế trong việc thiết kế trải nghiệm người dùng (Developer Experience) của đội ngũ K8s.
 
 ---
 *(Các câu hỏi mới sẽ tiếp tục được cập nhật tại đây...)*
