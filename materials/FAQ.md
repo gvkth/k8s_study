@@ -9,6 +9,7 @@ Tài liệu này tổng hợp các câu hỏi chuyên sâu về lý thuyết và
   - [Q1: Pod được hiểu là wrapper của 1 hoặc nhiều container à? Cụ thể hơn nó có thêm gì ngoài các container nó wrap?](#q1-pod-được-hiểu-là-wrapper-của-1-hoặc-nhiều-container-à-cụ-thể-hơn-nó-có-thêm-gì-ngoài-các-container-nó-wrap)
   - [Q2: Tại sao K8s (trong Docker Desktop) đã chạy nhưng tôi mở giao diện Containers lên lại không thấy container nào?](#q2-tại-sao-k8s-trong-docker-desktop-đã-chạy-nhưng-tôi-mở-giao-diện-containers-lên-lại-không-thấy-container-nào)
   - [Q3: Các Pod (như Nginx) cung cấp dịch vụ ở cổng nào? Làm sao để truy cập từ máy thật vào?](#q3-các-pod-như-nginx-cung-cấp-dịch-vụ-ở-cổng-nào-làm-sao-để-truy-cập-từ-máy-thật-vào)
+  - [Q4: Ý tưởng dùng Selector trong K8s có giống với Selector trong CSS (class, id) không?](#q4-ý-tưởng-dùng-selector-trong-k8s-có-giống-với-selector-trong-css-class-id-không)
 
 ---
 
@@ -57,6 +58,18 @@ Tài liệu này tổng hợp các câu hỏi chuyên sâu về lý thuyết và
 **Để truy cập được, ta có 2 cách phổ biến:**
 - **Cách tạm thời (Dùng để debug):** Sử dụng lệnh `kubectl port-forward <tên-pod> 8080:80`. Lệnh này sẽ tạo một "đường ống" nối từ cổng 8080 máy thật vào cổng 80 của Pod. Khi đó bạn truy cập qua `localhost:8080`.
 - **Cách chính thống (Production):** Sử dụng đối tượng **Service**. Service sẽ tạo ra một điểm truy cập ổn định (Static IP hoặc Port trên Node) để dẫn luồng traffic từ thế giới bên ngoài vào các Pod đang chạy.
+
+### Q4: Ý tưởng dùng Selector trong K8s có giống với Selector trong CSS (class, id) không?
+**A:** Liên tưởng của bạn cực kỳ chính xác và rất trực quan! Đây chính là cách hiểu đúng nhất về linh hồn của K8s.
+
+- **Labels (Nhãn) = CSS Classes:** Bạn có một Pod, bạn "dán" cho nó các nhãn như `class="web-server"`, `env="prod"`. Một Pod có thể có nhiều nhãn, giống như một thẻ HTML có thể có nhiều class.
+- **Selectors = CSS Selectors:** Khi bạn viết một Service, bạn đang viết một "quy tắc" tương tự như `.web-server { color: red; }`. K8s sẽ đi quét toàn bộ cluster, hễ thấy đứa nào có class (Label) là `web-server` thì nó sẽ "áp dụng" Service đó lên đứa đó (phân phối traffic vào).
+
+**Tại sao K8s lại chọn cách này thay vì dùng IP (giống như dùng ID)?**
+1. **Tính động (Dynamic):** Trong CSS, nếu bạn thêm một thẻ HTML mới với class `.web-server`, nó tự động nhận style đỏ. Trong K8s cũng vậy, nếu bạn scale thêm 10 Pod mới với label `app: nginx`, Service tự động nhận thêm 10 "đầu mối" mới để chia tải mà không cần bạn sửa code.
+2. **Khả năng phân nhóm (Grouping):** Bạn có thể gẩy một Selector cực kỳ tinh vi: *"Hãy chọn tất cả Pod có label `app: nginx` VÀ `env: prod`"*. Nó giống hệt việc bạn viết `.nginx.prod { ... }` trong CSS vậy.
+
+Cách tư duy này giúp bạn thoát khỏi việc quản lý "cá thể" (tên Pod, IP Pod) để chuyển sang quản lý "tập hợp" (Labels), giúp hệ thống có khả năng mở rộng (scale) vô tận.
 
 ---
 *(Các câu hỏi mới sẽ tiếp tục được cập nhật tại đây...)*
