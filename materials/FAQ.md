@@ -8,6 +8,7 @@ Tài liệu này tổng hợp các câu hỏi chuyên sâu về lý thuyết và
 - [1. Khái niệm cơ bản & Kiến trúc](#1-khái-niệm-cơ-bản--kiến-trúc)
   - [Q1: Pod được hiểu là wrapper của 1 hoặc nhiều container à? Cụ thể hơn nó có thêm gì ngoài các container nó wrap?](#q1-pod-được-hiểu-là-wrapper-của-1-hoặc-nhiều-container-à-cụ-thể-hơn-nó-có-thêm-gì-ngoài-các-container-nó-wrap)
   - [Q2: Tại sao K8s (trong Docker Desktop) đã chạy nhưng tôi mở giao diện Containers lên lại không thấy container nào?](#q2-tại-sao-k8s-trong-docker-desktop-đã-chạy-nhưng-tôi-mở-giao-diện-containers-lên-lại-không-thấy-container-nào)
+  - [Q3: Các Pod (như Nginx) cung cấp dịch vụ ở cổng nào? Làm sao để truy cập từ máy thật vào?](#q3-các-pod-như-nginx-cung-cấp-dịch-vụ-ở-cổng-nào-làm-sao-để-truy-cập-từ-máy-thật-vào)
 
 ---
 
@@ -44,6 +45,18 @@ Tài liệu này tổng hợp các câu hỏi chuyên sâu về lý thuyết và
 2. **Chưa có Ứng dụng/Pod nào được triển khai (Deploy):**
    Màn hình Container của Docker Desktop trống bốc vì cụm K8s vừa khởi tạo là một "vùng đất trống". Bộ sậu "ban quản lý" đang chạy ngầm, nhưng chưa có "cư dân" ứng dụng nào được dọn đến ở.
    Trong K8s, người quản trị thường sẽ chẳng bao giờ ngó ngàng vào giao diện Docker Desktop để xem container. Mọi thao tác kiểm tra trạng thái đều được gõ lệnh qua terminal. Ví dụ: Dùng lệnh `kubectl get pods -A` (`-A` tức *All Namespaces*) để dòm thẳng trực tiếp vào hệ thống (để thấy luôn cả những Pod cốt lõi của "Ban quản lý").
+
+### Q3: Các Pod (như Nginx) cung cấp dịch vụ ở cổng nào? Làm sao để truy cập từ máy thật vào?
+**A:** Đây là vấn đề cốt lõi về Mạng (Networking) trong Kubernetes. Cần phân biệt rõ các lớp truy cập:
+
+1. **Bên trong Container:** Nginx mặc định lắng nghe ở cổng **80**. Đây là cấu hình cứng bên trong phần mềm.
+2. **Bên trong Pod:** Trong file YAML, ta khai báo `containerPort: 80`. Lưu ý: Dòng này mang tính chất "khai báo" cho K8s biết là container này muốn dùng cổng đó, nó không thực sự mở cổng ra ngoài máy thật.
+3. **Bên trong Cluster:** Mỗi Pod sau khi tạo sẽ được cấp 1 địa chỉ IP riêng (chỉ có hiệu lực trong mạng nội bộ K8s). Các Pod khác có thể gọi Pod Nginx qua `IP:80`.
+4. **Từ máy thật (Windows) truy cập vào:** Đây là điểm mấu chốt. Mạng của máy thật và mạng của Pod là **tách biệt**. Bạn không thể gõ IP của Pod vào trình duyệt Windows để xem web.
+
+**Để truy cập được, ta có 2 cách phổ biến:**
+- **Cách tạm thời (Dùng để debug):** Sử dụng lệnh `kubectl port-forward <tên-pod> 8080:80`. Lệnh này sẽ tạo một "đường ống" nối từ cổng 8080 máy thật vào cổng 80 của Pod. Khi đó bạn truy cập qua `localhost:8080`.
+- **Cách chính thống (Production):** Sử dụng đối tượng **Service**. Service sẽ tạo ra một điểm truy cập ổn định (Static IP hoặc Port trên Node) để dẫn luồng traffic từ thế giới bên ngoài vào các Pod đang chạy.
 
 ---
 *(Các câu hỏi mới sẽ tiếp tục được cập nhật tại đây...)*

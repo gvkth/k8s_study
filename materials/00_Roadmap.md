@@ -21,7 +21,7 @@ Dưới đây là lộ trình chi tiết các bài học đã và sẽ được 
 - [x] **Bài 4: Deployments** (`04_Deployments.md`)
   - Quản lý phiên bản ứng dụng với Deployment.
   - Rolling Update và Rollback.
-- [ ] **Bài 5: Services và Mạng trong K8s** (`05_Services_and_Networking.md`)
+- [x] **Bài 5: Services và Mạng trong K8s** (`05_Services_and_Networking.md`)
   - Giao tiếp giữa các Pods.
   - Các loại Service: ClusterIP, NodePort, LoadBalancer.
 - [ ] **Bài 6: Quản lý Cấu hình và Mật khẩu** (`06_ConfigMaps_and_Secrets.md`)
