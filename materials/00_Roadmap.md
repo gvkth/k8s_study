@@ -24,7 +24,7 @@ Dưới đây là lộ trình chi tiết các bài học đã và sẽ được 
 - [x] **Bài 5: Services và Mạng trong K8s** (`05_Services_and_Networking.md`)
   - Giao tiếp giữa các Pods.
   - Các loại Service: ClusterIP, NodePort, LoadBalancer.
-- [ ] **Bài 6: Quản lý Cấu hình và Mật khẩu** (`06_ConfigMaps_and_Secrets.md`)
+- [x] **Bài 6: Quản lý Cấu hình và Mật khẩu** (`06_ConfigMaps_and_Secrets.md`)
   - Tách biệt cấu hình ứng dụng với ConfigMap.
   - Lưu trữ thông tin nhạy cảm với Secret.
 
