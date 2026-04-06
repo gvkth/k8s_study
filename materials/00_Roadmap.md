@@ -29,7 +29,7 @@ Dưới đây là lộ trình chi tiết các bài học đã và sẽ được 
   - Lưu trữ thông tin nhạy cảm với Secret.
 
 ## Phần 3: Lưu Trữ và Quản Lý Tải Nâng Cao (Storage & Advanced Networking)
-- [ ] **Bài 7: Volumes và Persistent Volumes (PVC)** (`07_Storage_and_Volumes.md`)
+- [x] **Bài 7: Volumes và Persistent Volumes (PVC)** (`07_Storage_and_Volumes.md`)
   - Cách mount data vào Pod.
   - Lưu trữ dữ liệu lâu dài (Persistent Volumes, Storage Classes).
 - [ ] **Bài 8: Ingress Controllers** (`08_Ingress.md`)
