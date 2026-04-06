@@ -32,7 +32,7 @@ Dưới đây là lộ trình chi tiết các bài học đã và sẽ được 
 - [x] **Bài 7: Volumes và Persistent Volumes (PVC)** (`07_Storage_and_Volumes.md`)
   - Cách mount data vào Pod.
   - Lưu trữ dữ liệu lâu dài (Persistent Volumes, Storage Classes).
-- [ ] **Bài 8: Ingress Controllers** (`08_Ingress.md`)
+- [x] **Bài 8: Ingress Controllers** (`08_Ingress.md`)
   - Phân tải HTTP/HTTPS vào cluster.
   - Cấu hình Ingress resource.
 - [ ] **Bài 9: StatefulSets và DaemonSets** (`09_StatefulSets_DaemonSets.md`)
