@@ -35,15 +35,16 @@ Dưới đây là lộ trình chi tiết các bài học đã và sẽ được 
 - [x] **Bài 8: Ingress Controllers** (`08_Ingress.md`)
   - Phân tải HTTP/HTTPS vào cluster.
   - Cấu hình Ingress resource.
-- [ ] **Bài 9: StatefulSets và DaemonSets** (`09_StatefulSets_DaemonSets.md`)
+- [x] **Bài 9: StatefulSets và DaemonSets** (`09_StatefulSets_DaemonSets.md`)
   - Triển khai ứng dụng có trạng thái (Database, Message Queue).
   - Chạy agent trên mỗi node (DaemonSet logs, monitoring).
 
+
 ## Phần 4: Nâng Cao & Quản Lý Cluster (Advanced & Operations)
-- [ ] **Bài 10: Helm Charts** (`10_Helm.md`)
+- [x] **Bài 10: Helm Charts** (`10_Helm.md`)
   - Đóng gói và chia sẻ ứng dụng K8s.
   - Cài đặt ứng dụng bằng Helm.
-- [ ] **Bài 11: Security và RBAC** (`11_Security_RBAC.md`)
+- [x] **Bài 11: Security và RBAC** (`11_Security_RBAC.md`)
   - Phân quyền người dùng và service accounts.
   - Policies (Network Policies, Pod Security).
 - [ ] **Bài 12: Cluster Management, Monitoring và Logging** (`12_Monitoring_Logging.md`)
