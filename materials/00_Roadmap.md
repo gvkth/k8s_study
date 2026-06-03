@@ -47,9 +47,26 @@ Dưới đây là lộ trình chi tiết các bài học đã và sẽ được 
 - [x] **Bài 11: Security và RBAC** (`11_Security_RBAC.md`)
   - Phân quyền người dùng và service accounts.
   - Policies (Network Policies, Pod Security).
-- [ ] **Bài 12: Cluster Management, Monitoring và Logging** (`12_Monitoring_Logging.md`)
+- [x] **Bài 12: Cluster Management, Monitoring và Logging** (`12_Monitoring_Logging.md`)
   - Cài đặt Prometheus và Grafana.
   - Xem log tập trung (EFK stack).
   - Quản trị dung lượng Node (Horizontal Pod Autoscaler - HPA).
 
-Bạn có thể bắt đầu với **Bài 1** và **Bài 2** dể hiểu kiến thức nền tảng và cài đặt môi trường nhé! Lúc nào bạn sẵn sàng, mình sẽ bổ sung tiếp các bài tiếp theo!
+## Phần 5: CI/CD Pipeline (GitLab CE - Jenkins - K8s)
+- [ ] **Bài 13: Tổng quan CI/CD và Kiến trúc hệ thống** (`13_CICD_Overview.md`)
+  - CI/CD là gì? Vai trò của từng thành phần.
+  - Luồng đi của Code từ GitLab CE qua Jenkins lên K8s.
+- [ ] **Bài 14: Cài đặt và Tích hợp GitLab CE với Jenkins** (`14_CICD_Setup_Integration.md`)
+  - Thiết lập Webhook và Access Token.
+  - Tự động trigger Jenkins khi có code push/merge request.
+- [ ] **Bài 15: Jenkins Declarative Pipeline cơ bản** (`15_CICD_Jenkinsfile.md`)
+  - Cấu trúc Jenkinsfile (Pipeline as Code).
+  - Khai báo các Stages và Steps.
+- [ ] **Bài 16: Build và Push Docker Image** (`16_CICD_Docker_Registry.md`)
+  - Sử dụng Jenkins để build Docker Image.
+  - Xác thực và push Image lên Private Container Registry.
+- [ ] **Bài 17: Triển khai liên tục (CD) lên K8s** (`17_CICD_Deploy_K8s.md`)
+  - Jenkins cập nhật image tag mới.
+  - Dùng Helm/kubectl trong Jenkins để deploy bản mới lên Kubernetes Cluster.
+
+Bạn có thể bắt đầu với **Bài 1** và **Bài 2** dể hiểu kiến thức nền tảng và cài đặt môi trường nhé! Hoặc đi thẳng vào **Phần 5** nếu đã vững K8s.
